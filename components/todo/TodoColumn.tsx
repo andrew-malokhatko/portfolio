@@ -2,48 +2,63 @@
 
 import TodoItem from "@/types/todo/TodoItem";
 import Status from "@/types/todo/TodoStatus";
-import TodoCard from "./TodoCard";;
+import ColumnData from "@/types/todo/ColumnData";
+import TodoCard from "./TodoCard";
+import { Plus } from "lucide-react";
+import { addCard } from "@/lib/todo/utils";
 
 interface TodoColumnProps {
-    title: string;
-    id: Status;         // Also stands for an index in columns[]
-    items: TodoItem[];
+    columnData: ColumnData;
     columns: TodoItem[][];
     setSelectedCard: React.Dispatch<React.SetStateAction<TodoItem | null>>;
     setSelectedColumn: React.Dispatch<React.SetStateAction<Status | null>>;
-    className?: string;
 }
 
-const TodoColumn = ({title, id, items, columns, setSelectedCard, setSelectedColumn, className}: TodoColumnProps) => {
 
-    const handleOnDragStart = (e: React.MouseEvent, removeItem: TodoItem) => {
-        setSelectedCard(removeItem);
-        columns[id] = columns[id].filter(item => item.id !== removeItem.id);
+const TodoColumn = ({columnData, columns, setSelectedCard, setSelectedColumn}: TodoColumnProps) => {
+
+    const handleOnDragStart = (e: React.MouseEvent, card: TodoItem) => {
+        setSelectedCard(card);
+        columns[columnData.id] = columns[columnData.id].filter(item => item.id !== card.id);
     }
 
     const handleOnDragOver = (e: React.MouseEvent) => {
-        setSelectedColumn(id);
-        //(e.currentTarget as HTMLElement).style.backgroundColor = 'rgb(17 17 17)'; // slate-800
+        setSelectedColumn(columnData.id);
     }
 
     const handleOnDragLeave = (e: React.MouseEvent) => {
         setSelectedColumn(null);
-        //(e.currentTarget as HTMLElement).style.backgroundColor = 'transparent';
+    }
+
+    const handleAddOnClick = (e: React.MouseEvent) => {
+        addCard(columnData.id, columns, "");
+        setSelectedColumn(null);
+    }
+
+    const onItemTitleChange = (itemId: number, newTitle: string) => {
+        columns[columnData.id] = columns[columnData.id].map(item =>
+            item.id === itemId ? { ...item, title: newTitle, state: "item" } : item
+        );
+        setSelectedColumn(null);
     }
 
     return (
         <div
-            className={`flex flex-col gap-2 border-border-dark rounded-md p-2 w-64 bg-background-secondary ` + className}
+            className={`flex flex-col gap-2 border-border-dark rounded-md p-2 w-64 bg-background-secondary ${columnData.style}`}
             onMouseOver={(e) => handleOnDragOver(e)}
             onMouseLeave={(e) => handleOnDragLeave(e)}
         >
-            <h4 className=" text-xl font-bold mb-2 px-1"><span className="text-md text-text-shadow">{id}. </span>{title}</h4>
-            {items.map((item) => (
+            <h4 className=" text-xl font-bold mb-2 px-1"><span className="text-md text-text-shadow">{columnData.id}. </span>{columnData.title}</h4>
+            {columns[columnData.id].map((item) =>
+            (
                 <div key={item.id} onMouseDown={(e) => handleOnDragStart(e, item)}>
-                    <TodoCard item={item}></TodoCard>
+                    <TodoCard variant={item.state} onTitleChange={onItemTitleChange} item={item}></TodoCard>
                 </div>
             ))}
-            <div className="mb-10" />
+            <div className="mb-10 flex items-center">
+                <button onClick={handleAddOnClick} className="text-text-shadow hover:text-foreground-secondary text-sm px-2">Add Card</button>
+                <Plus size={18}></Plus>
+            </div>
         </div>
     )
 }

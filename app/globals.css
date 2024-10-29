@@ -15,6 +15,7 @@
   --foreground-secondary: #b8b8b8; 
   --border-dark: #242424;
   --text-shadow: #9ca3af;
+  --background-highlight: #9ca3af;
 }
 
 @media (prefers-color-scheme: dark) {

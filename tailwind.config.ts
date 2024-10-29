@@ -6,6 +6,13 @@ const config: Config = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  safelist: [
+    // Add your dynamic classes here
+    'text-green-300',
+    'text-yellow-300',
+    'bg-blue-400',
+    // Add any other classes that might be used dynamically
+  ],
   theme: {
     extend: {
       colors: {
@@ -15,6 +22,7 @@ const config: Config = {
         'background-secondary' : "var(--background-secondary)",
         'text-shadow' : "var(--text-shadow)",
         'foreground-secondary' : "var(--foreground-secondary)",
+        'background-highlight' : "var(--background-highlight)"
       },
     },
   },
