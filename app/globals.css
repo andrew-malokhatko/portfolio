@@ -2,10 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  ::selection {
+    @apply bg-blue-700;
+  }
+}
+
 :root {
   --background: #101010;
+  --background-secondary: #141414;
   --foreground: #dcdcdc;
+  --foreground-secondary: #b8b8b8; 
   --border-dark: #242424;
+  --text-shadow: #9ca3af;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -13,6 +22,7 @@
     --background: #0a0a0a;
     --foreground: #ededed;
     --border-color: #141414;
+    --background-secondary: #151515; 
   }
 }
 

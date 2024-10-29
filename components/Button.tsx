@@ -5,17 +5,18 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   href: string;
   children?: React.ReactNode;
   RightIcon?: LucideIcon;
+  classsName?: string;
 }
 
-const Button = ({ href, children, RightIcon }: ButtonProps) => {
+const Button = ({ href, children, RightIcon, className }: ButtonProps) => {
   return (
     <Link
       href = {href}
       target="_blank"
       rel="noopener noreferrer"
-      className="px-4 border py-1 text-center font-semibold border-border-dark rounded-md flex items-center gap-2 hover:bg-border-dark transition"
+      className={"px-4 py-1 text-center font-semibold rounded-md flex items-center gap-2 transition whitespace-nowrap "+ className}
     >
-      <span>{children}</span>
+      {children}
       {RightIcon && <RightIcon size={20}/>}
     </Link>
   );
