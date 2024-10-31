@@ -7,7 +7,7 @@ export const setCardPosition = (e: MouseEvent | TouchEvent, selectedCard: HTMLEl
 
     let x: number, y: number;
 
-    if ('clientX' in e) {
+    if (e instanceof MouseEvent) {
         x = e.clientX;
         y = e.clientY + window.scrollY; 
     } else {
@@ -34,6 +34,7 @@ export const relocateSelectedCard = (selectedCard: TodoItem | null, selectedColu
     }
     else
 	{
+        console.log(selectedColumn);
         selectedCard.status = selectedColumn;
         columns[selectedColumn].push(selectedCard);
     }
@@ -49,6 +50,10 @@ export const addCard = (column: Status, columns: TodoItem[][], text: string) => 
     }
     columns[column].push(addItem);
 }
+
+/*export const deleteCard = (column: Status, columns: TodoItem[][], id: number) => {
+    /*columns[column] = columns[column].filter(item => item.id !== id);
+}*/
 
 export const todoColumnsData = [
     {

@@ -14,8 +14,8 @@ const features: Feature[] = [
         Icon: ListTodo,
     },
     {
-        name: "TODO1 List",
-        link: "/todo",
+        name: "Connect 4 Game",
+        link: "/connect-4",
         Icon: ListTodo,
     },
     {

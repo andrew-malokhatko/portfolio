@@ -22,7 +22,8 @@ const config: Config = {
         'background-secondary' : "var(--background-secondary)",
         'text-shadow' : "var(--text-shadow)",
         'foreground-secondary' : "var(--foreground-secondary)",
-        'background-highlight' : "var(--background-highlight)"
+        'background-highlight' : "var(--background-highlight)",
+        'background-delete' : "var(--background-delete)",
       },
     },
   },

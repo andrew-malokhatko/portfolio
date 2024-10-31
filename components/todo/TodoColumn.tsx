@@ -6,6 +6,7 @@ import ColumnData from "@/types/todo/ColumnData";
 import TodoCard from "./TodoCard";
 import { Plus } from "lucide-react";
 import { addCard } from "@/lib/todo/utils";
+import { cn } from "@/lib/utils";
 
 interface TodoColumnProps {
     columnData: ColumnData;
@@ -22,11 +23,12 @@ const TodoColumn = ({columnData, columns, setSelectedCard, setSelectedColumn}: T
         columns[columnData.id] = columns[columnData.id].filter(item => item.id !== card.id);
     }
 
-    const handleOnDragOver = (e: React.MouseEvent) => {
+    const handleOnMouseOver = (e: React.MouseEvent) => {
         setSelectedColumn(columnData.id);
+        
     }
 
-    const handleOnDragLeave = (e: React.MouseEvent) => {
+    const handleOnMouseLeave = (e: React.MouseEvent) => {
         setSelectedColumn(null);
     }
 
@@ -44,11 +46,11 @@ const TodoColumn = ({columnData, columns, setSelectedCard, setSelectedColumn}: T
 
     return (
         <div
-            className={`flex flex-col gap-2 border-border-dark rounded-md p-2 w-64 bg-background-secondary ${columnData.style}`}
-            onMouseOver={(e) => handleOnDragOver(e)}
-            onMouseLeave={(e) => handleOnDragLeave(e)}
+            className={`flex flex-col gap-2 border-border-dark rounded-md p-2 w-64 bg-background-secondary ` +  columnData.style}
+            onMouseOver={(e) => handleOnMouseOver(e)}
+            onMouseLeave={(e) => handleOnMouseLeave(e)}
         >
-            <h4 className=" text-xl font-bold mb-2 px-1"><span className="text-md text-text-shadow">{columnData.id}. </span>{columnData.title}</h4>
+            <h4 className=" text-xl font-bold mb-2 px-1"><span className="text-md text-text-shadow"> {columnData.id}. </span>{columnData.title}</h4>
             {columns[columnData.id].map((item) =>
             (
                 <div key={item.id} onMouseDown={(e) => handleOnDragStart(e, item)}>
@@ -57,7 +59,7 @@ const TodoColumn = ({columnData, columns, setSelectedCard, setSelectedColumn}: T
             ))}
             <div className="mb-10 flex items-center">
                 <button onClick={handleAddOnClick} className="text-text-shadow hover:text-foreground-secondary text-sm px-2">Add Card</button>
-                <Plus size={18}></Plus>
+                <Plus size={18}></Plus> 
             </div>
         </div>
     )

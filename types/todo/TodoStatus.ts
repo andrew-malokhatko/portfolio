@@ -1,7 +1,8 @@
 enum Status {
     TODO,
     InProgress,
-    Done
+    Done,
+    Delete,
 }
 
 export default Status;
