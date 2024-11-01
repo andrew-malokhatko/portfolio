@@ -1,16 +1,21 @@
 import State from "@/types/connect-4/State";
+import Cell from "@/types/connect-4/Cell";
+import { Star } from "lucide-react";
 
 interface Connect4CellProps {
-    state: State
+    cell: Cell;
 }
 
-const Connect4Cell = ({state}: Connect4CellProps) => {
+const Connect4Cell = ({cell}: Connect4CellProps) => {
     return (
-        <div className={`w-full h-full aspect-square rounded-md border border-border-dark
-            ${state === State.Black ? `bg-background-highlight ` :  ``}
-            ${state === State.White ? `bg-foreground-secondary ` :  ``} `}
+        <div className={`w-full h-full flex justify-center items-center aspect-square rounded-md border border-border-dark
+            ${cell.state === State.Black ? `bg-background-highlight ` :  ``}
+            ${cell.state === State.White ? `bg-foreground-secondary ` :  ``} `}
         >
-            
+            {
+                cell.isWinnerCell && 
+                <Star size={30} />
+            }
         </div>
     );
 }

@@ -14,7 +14,8 @@ export const fillBoard = (board: Cell[]) =>
     for (let i = 0; i < ROWS * COLUMNS; i++)
     {
         board[i] = {
-            state: State.Empty
+            state: State.Empty,
+            isWinnerCell: false,
         }
     }
 
@@ -64,6 +65,9 @@ export const checkGameOver = (board: Cell[], lastMoveX: number, lastMoveY: numbe
         [[1, -1], [-1, 1]] // diagonal /
     ];
 
+    // add cell from the last move, as it is not considered in the algorithm
+    let winnerCells = [[lastMoveX, lastMoveY]];
+
     for (const [dir1, dir2] of directions) {
         let count = 1; // counting the last move itself
 
@@ -77,6 +81,7 @@ export const checkGameOver = (board: Cell[], lastMoveX: number, lastMoveY: numbe
                 y >= 0 && y < ROWS && 
                 board[getCellIndex(x, y)].state === playerState
             ) {
+                winnerCells.push([x, y])
                 count++;
                 x += dx;
                 y += dy;
@@ -84,8 +89,12 @@ export const checkGameOver = (board: Cell[], lastMoveX: number, lastMoveY: numbe
         }
 
         if (count >= 4) {
-            return true;
+            console.log(winnerCells);
+            return winnerCells;
         }
+
+        // reset the array if the winning sequence was not found
+        winnerCells = [[lastMoveX, lastMoveY]];
     }
 
     const isBoardFull = board.every(cell => cell.state !== State.Empty);
@@ -94,4 +103,15 @@ export const checkGameOver = (board: Cell[], lastMoveX: number, lastMoveY: numbe
     }
 
     return false;
+}
+
+
+export const setWinningCells = (board: Cell[], winnerCells: number[][]) =>
+{
+    for (const [x, y] of winnerCells)
+    {
+        board[getCellIndex(x, y)].isWinnerCell = true;
+    }
+
+    return board;
 }

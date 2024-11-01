@@ -2,13 +2,14 @@
 import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from "react";
 import Cell from "@/types/connect-4/Cell";
 import State from "@/types/connect-4/State";
-import { ROWS, COLUMNS, getCellIndex, fillBoard, getSelectedColumn, addToColumn, checkGameOver } from "@/lib/connect-4/utils";
+import { ROWS, COLUMNS, fillBoard, getSelectedColumn, addToColumn, checkGameOver, setWinningCells } from "@/lib/connect-4/utils";
 import Connect4Cell from "./Connect4Cell";
 import { RotateCcw } from "lucide-react";
 
 // index 0 for white, 1 for black
-const winMessages = ["White won", "Black won"];
+const endGameMessages = ["White won", "Black won", "Draw"];
 const moveMessages = ["Black to move: ", "White to move: "];
+const newGameMessage = "New Game";
 
 const Connect4Board = () => {
 
@@ -31,10 +32,18 @@ const Connect4Board = () => {
             if (addSuccess)
             {
                 const gameResult = checkGameOver(board, addSuccess[0], addSuccess[1], moveColor);
-                if (gameResult === true)
+                if (gameResult !== false)
                 {
                     setGameRunning(false);
-                    setMessage(winMessages[moveColor]);
+
+                    if (gameResult == 'draw')
+                    {
+                        setMessage(endGameMessages[-1]);
+                        return;
+                    }
+
+                    setBoard([...setWinningCells(board, gameResult)]);
+                    setMessage(endGameMessages[moveColor]);
                     return;
                 }
 
@@ -49,6 +58,7 @@ const Connect4Board = () => {
         setBoard([...fillBoard(board)]);
         setGameRunning(true);
         setMoveColor(State.White);
+        setMessage(newGameMessage)
     }
 
     return (
@@ -68,7 +78,7 @@ const Connect4Board = () => {
                     onMouseDown={handleBoardMouseDown}
                     >
                     {board.map((cell, index) => (
-                        <Connect4Cell state={cell.state} key={index}></Connect4Cell>
+                        <Connect4Cell cell={cell} key={index}></Connect4Cell>
                         ))}
                 </div>
             </div>
