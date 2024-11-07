@@ -4,9 +4,9 @@ import { ArrowLeft } from 'lucide-react';
 
 const Home = () => {
   return (
-    <div className="w-full flex justify-between gap-4 mt-[10%] min-h-fit select-none mb-16">
+    <main className="w-full min-h-[calc(100vh-120px)] flex items-center justify-center py-8">
       <Connect4Board></Connect4Board>
-    </div>
+    </main>
   );
 };
 

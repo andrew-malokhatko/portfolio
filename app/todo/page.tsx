@@ -5,11 +5,7 @@ import Link from "next/link";
 
 const Home = () => {
     return (
-        <main className="w-full flex flex-col gap-4 mt-[5%] min-h-fit select-none mb-16">
-
-            <Link href="/" className="p-3 rounded-md border w-fit text-center border-border-dark hover:bg-border-dark duration-200" >
-                <ArrowLeft></ArrowLeft>
-            </Link>
+        <main className="w-full min-h-[calc(100vh-120px)] flex items-center justify-center py-8">
             <TodoBoard items={items}></TodoBoard>
         </main>
     )

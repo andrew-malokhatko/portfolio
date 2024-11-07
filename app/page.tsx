@@ -15,7 +15,7 @@ import links from "@/lib/links";
 export default function Home() {
   return (
     <main className="min-h-screen flex flex-col text-foreground font-sans mb-20">
-      <section className="mt-[20%] w-full flex items-end" id="hero">
+      <section className="mt-[10%] w-full flex items-end" id="hero">
         <div className="flex flex-col justify-center items-start">
           <h1 className="text-7xl font-bold">hi, andrew here👋</h1>
           <p className="mt-6 text-lg">17-year-old <span className="text-blue-400">software developer</span> from Ukraine 🇺🇦</p> 

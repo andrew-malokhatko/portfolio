@@ -1,5 +1,5 @@
 import { LucideIcon } from "lucide-react";
-import { ListTodo, Gamepad2 } from "lucide-react";
+import { ListTodo, Gamepad2, Laugh, Grid2x2X } from "lucide-react";
 
 interface Feature {
     name: string;
@@ -16,17 +16,17 @@ const features: Feature[] = [
     {
         name: "Connect 4 Game",
         link: "/connect-4",
+        Icon: Grid2x2X,
+    },
+    {
+        name: "Joke API",
+        link: "/joke",
+        Icon: Laugh,
+    },
+    {
+        name: "Memory Game",
+        link: "/memory",
         Icon: Gamepad2,
-    },
-    {
-        name: "TODO2 List",
-        link: "/todo",
-        Icon: ListTodo,
-    },
-    {
-        name: "TODO3 List",
-        link: "/todo",
-        Icon: ListTodo,
     },
 ]
 

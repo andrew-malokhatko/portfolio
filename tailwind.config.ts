@@ -16,10 +16,10 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
+        background: "hsl(var(--background)) / <alpha-value>",
         foreground: "var(--foreground)",
         'border-dark' : "var(--border-dark)",
-        'background-secondary' : "var(--background-secondary)",
+        'background-secondary' : "var(--background-secondary)", 
         'text-shadow' : "var(--text-shadow)",
         'foreground-secondary' : "var(--foreground-secondary)",
         'background-highlight' : "var(--background-highlight)",
