@@ -1,7 +1,5 @@
 import TodoBoard from "@/components/todo/TodoBoard";
-import items from "@/lib/items";
-import { ArrowLeft } from "lucide-react";
-import Link from "next/link";
+import items from "@/lib/todo/items";
 
 const Home = () => {
     return (

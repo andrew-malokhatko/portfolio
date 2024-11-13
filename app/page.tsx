@@ -22,7 +22,7 @@ export default function Home() {
           <p className="mt-2.5">Currently based in Slovakia 🇸🇰</p>
           <p className="mt-0.5">Student at Slovak University of Technology</p> 
           <div className="flex mt-8 gap-8 ">
-            <Button className="hover:bg-border-dark transition border border-border-dark" href={links.cv} RightIcon={FileUser}>Resume</Button>
+            <Button className="hover:bg-border-dark transition border border-border-dark" href={links.cv} RightIcon={FileUser} inNewTab>Resume</Button>
             <div className="flex flex-row gap-2">
               <IconButton href={links.github} Icon={Github} />
               <IconButton href={links.linkedin} Icon={Linkedin} />
@@ -42,9 +42,9 @@ export default function Home() {
       <section className="flex flex-col items-center gap-4 mt-14" id="projects">
         <div className="w-full flex items-end justify-between">
           <div className="text-4xl font-bold w-full">featured projects</div>
-          <Button href={links.cv} RightIcon={ArrowRight} className="text-text-shadow hover:text-foreground">View more</Button>
+          <Button href={links.projects} RightIcon={ArrowRight} className="text-text-shadow hover:text-foreground">View more</Button>
         </div>
-        <ProjectGrid></ProjectGrid>
+        <ProjectGrid limit={3}></ProjectGrid>
       </section>
 
       <section className="flex flex-col gap-4 justify-between items-center mt-14" id="implemented">

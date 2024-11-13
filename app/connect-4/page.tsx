@@ -1,6 +1,4 @@
 import Connect4Board from '@/components/connect-4/Connect4Board';
-import Link from 'next/link';
-import { ArrowLeft } from 'lucide-react';
 
 const Home = () => {
   return (
