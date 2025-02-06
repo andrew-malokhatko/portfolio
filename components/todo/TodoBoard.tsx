@@ -1,7 +1,7 @@
 "use client"
 
 import TodoColumn from "@/components/todo/TodoColumn";
-import items from "@/lib/items";
+import items from "@/lib/todo/items";
 import TodoItem from "@/types/todo/TodoItem";
 import Status from "@/types/todo/TodoStatus";
 import { useState, useEffect, useRef } from "react";
