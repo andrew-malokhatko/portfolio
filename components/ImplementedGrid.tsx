@@ -6,7 +6,7 @@ const ImplementedGrid = () => {
         <div className="w-full grid grid-cols-3 gap-3">
             {features.map(({name, link, Icon}) => (
                 <Link href={link} key={name}>
-                    <div className="border border-border-dark rounded-md w-full flex item-center justify-around py-6 hover:bg-border-dark duration-300">
+                    <div className="border border-border-dark rounded-md w-full flex item-center justify-around py-6 hover:bg-border-dark transition">
                         <h4 className="font-bold text-xl">{name}</h4>
                         <Icon size={24}></Icon>
                     </div>

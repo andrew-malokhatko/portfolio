@@ -1,0 +1,3 @@
+.calculator-button {
+    @apply p-4 text-lg border-none rounded-md bg-background-secondary hover:bg-background-highlight cursor-pointer;
+  }
